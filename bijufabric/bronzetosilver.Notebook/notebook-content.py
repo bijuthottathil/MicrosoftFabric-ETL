@@ -25,7 +25,7 @@
 # --------- CONFIG ---------
 RAW_PATH = "abfss://Oil_EventStreamWorkspace@onelake.dfs.fabric.microsoft.com/oillakehouse.Lakehouse/Files/raw/oil_events"
 BRONZE_PATH = "abfss://Oil_EventStreamWorkspace@onelake.dfs.fabric.microsoft.com/oillakehouse.Lakehouse/Files/bronze/oil_events_delta"
-BRONZE_TABLE = "bronze_oil_events"   # name you'll use in SQL
+BRONZE_TABLE = "bronze_oil_events"      # name you'll use in SQL
 
 # If your raw files are partitioned (e.g., date=YYYY-MM-DD/hour=HH), Spark will read them all.
 # Adjust the schema below if your raw JSON differs.
