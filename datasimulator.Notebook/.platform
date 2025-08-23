@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Notebook",
-    "displayName": "Streamingsimulator",
+    "displayName": "datasimulator",
     "description": "New notebook"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "4a24e19e-1645-93c6-4489-390fb46fe43b"
+    "logicalId": "64fc783c-4d5b-a821-4975-51b11dd8ab1e"
   }
 }

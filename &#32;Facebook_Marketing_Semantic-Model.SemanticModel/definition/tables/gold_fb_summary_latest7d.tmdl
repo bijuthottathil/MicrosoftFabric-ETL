@@ -1,0 +1,118 @@
+table gold_fb_summary_latest7d
+	lineageTag: eded75fe-ffbf-46eb-a2bd-0fd99562856f
+	sourceLineageTag: [dbo].[gold_fb_summary_latest7d]
+
+	column impressions
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 129f3643-3cbe-4561-9e47-50ab7bf84fee
+		sourceLineageTag: impressions
+		summarizeBy: sum
+		sourceColumn: impressions
+
+		annotation SummarizationSetBy = Automatic
+
+	column clicks
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 6ede1711-1135-48dd-8640-3879b118ab2e
+		sourceLineageTag: clicks
+		summarizeBy: sum
+		sourceColumn: clicks
+
+		annotation SummarizationSetBy = Automatic
+
+	column spend
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 482d3a60-6178-405e-9c2d-b735f9201975
+		sourceLineageTag: spend
+		summarizeBy: sum
+		sourceColumn: spend
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column conversions
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 84663e45-20f9-4b2e-a826-0f1a073bf76e
+		sourceLineageTag: conversions
+		summarizeBy: sum
+		sourceColumn: conversions
+
+		annotation SummarizationSetBy = Automatic
+
+	column conversion_value
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 9b87a0df-8ee5-4814-bb67-b63d804956e5
+		sourceLineageTag: conversion_value
+		summarizeBy: sum
+		sourceColumn: conversion_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ctr
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 150d9eb7-164e-4fc2-9d33-cfd16b0c3ead
+		sourceLineageTag: ctr
+		summarizeBy: sum
+		sourceColumn: ctr
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cpc
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 2b2aa102-927b-4f8b-86f6-82cc84047eed
+		sourceLineageTag: cpc
+		summarizeBy: sum
+		sourceColumn: cpc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cpm
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 4ea27d34-4ac7-4d8b-9a4b-ea92e01ff26e
+		sourceLineageTag: cpm
+		summarizeBy: sum
+		sourceColumn: cpm
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column purchase_roas
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 62965db1-bdc7-4f1a-9956-29b87f60c672
+		sourceLineageTag: purchase_roas
+		summarizeBy: sum
+		sourceColumn: purchase_roas
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition gold_fb_summary_latest7d = entity
+		mode: directLake
+		source
+			entityName: gold_fb_summary_latest7d
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

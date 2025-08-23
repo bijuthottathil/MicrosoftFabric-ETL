@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Lakehouse",
-    "displayName": "oillakehouse"
+    "type": "Report",
+    "displayName": "UsageDashboard"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "b2927789-d651-b4e3-4b20-e30ab7813ff0"
+    "logicalId": "f1a1e51e-86d9-b2ca-4335-10f1d4fb7bd1"
   }
 }

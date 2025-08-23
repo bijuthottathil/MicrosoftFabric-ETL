@@ -1,0 +1,84 @@
+table silver_fb_ad_dim
+	lineageTag: a2f4d1e4-f62f-496a-bcc0-ff31b7932559
+	sourceLineageTag: [dbo].[silver_fb_ad_dim]
+
+	column ad_id
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 6b5a781e-e647-4772-9d01-d716897b133c
+		sourceLineageTag: ad_id
+		summarizeBy: none
+		sourceColumn: ad_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ad_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c3f42cb4-f6be-4d9a-8c4c-9c32b755999a
+		sourceLineageTag: ad_name
+		summarizeBy: none
+		sourceColumn: ad_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column adset_id
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 119b3412-e57f-4ba7-9b79-6b5621d561a6
+		sourceLineageTag: adset_id
+		summarizeBy: none
+		sourceColumn: adset_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column adset_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: d837b8f7-336b-48ba-a8fc-e4e7bb4b9439
+		sourceLineageTag: adset_name
+		summarizeBy: none
+		sourceColumn: adset_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ad_creation_time_ts
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 33b6bedb-8559-42d3-a988-07e74ac43b73
+		sourceLineageTag: ad_creation_time_ts
+		summarizeBy: none
+		sourceColumn: ad_creation_time_ts
+
+		annotation SummarizationSetBy = Automatic
+
+	column ad_delivery_status
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 59f50a01-3835-47da-84e0-db4fc70ed508
+		sourceLineageTag: ad_delivery_status
+		summarizeBy: none
+		sourceColumn: ad_delivery_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column objective
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1a2f3115-b0b1-4e7e-a309-728a1e567c3c
+		sourceLineageTag: objective
+		summarizeBy: none
+		sourceColumn: objective
+
+		annotation SummarizationSetBy = Automatic
+
+	partition silver_fb_ad_dim = entity
+		mode: directLake
+		source
+			entityName: silver_fb_ad_dim
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,53 @@
+table silver_fb_adset_dim
+	lineageTag: fdb16028-084b-4d7c-aceb-f4cbb5ee1297
+	sourceLineageTag: [dbo].[silver_fb_adset_dim]
+
+	column adset_id
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 673f195c-fd1d-4b8d-9ae7-0100ac665f53
+		sourceLineageTag: adset_id
+		summarizeBy: none
+		sourceColumn: adset_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column adset_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 46edbad5-9eb2-46e4-8f8d-13ea309f4f12
+		sourceLineageTag: adset_name
+		summarizeBy: none
+		sourceColumn: adset_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column campaign_id
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 0b4686a4-e04c-40e0-9ae4-2ab5aa32e627
+		sourceLineageTag: campaign_id
+		summarizeBy: none
+		sourceColumn: campaign_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column campaign_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 0ea5fc1d-2a05-4abd-9054-c1e889775350
+		sourceLineageTag: campaign_name
+		summarizeBy: none
+		sourceColumn: campaign_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition silver_fb_adset_dim = entity
+		mode: directLake
+		source
+			entityName: silver_fb_adset_dim
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+
