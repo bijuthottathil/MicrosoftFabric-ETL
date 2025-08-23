@@ -102,7 +102,7 @@ latest7.write.mode("overwrite").format("delta").saveAsTable(GOLD_SUMMARY)
 
 
 # Quick peek
-display(spark.table(GOLD_DAILY_CAMPAIGN).orderBy(F.col("event_date").desc()).limit(20))
+display(spark.table(GOLD_DAILY_CAMPAIGN).orderBy(F.col("event_date")).limit(20))
 
 # METADATA ********************
 
@@ -114,7 +114,7 @@ display(spark.table(GOLD_DAILY_CAMPAIGN).orderBy(F.col("event_date").desc()).lim
 # CELL ********************
 
 # MAGIC %%sql
-# MAGIC select * from gold_fb_summary_latest7d
+# MAGIC select count(*) from gold_fb_summary_latest7d
 
 # METADATA ********************
 

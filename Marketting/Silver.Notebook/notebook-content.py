@@ -91,7 +91,7 @@ display(spark.table(SILVER_FACT).limit(10))
 # CELL ********************
 
 # MAGIC %%sql
-# MAGIC select * from silver_facebook_ads_fact
+# MAGIC select count(*) from silver_facebook_ads_fact
 
 # METADATA ********************
 

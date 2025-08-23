@@ -101,11 +101,21 @@ display(spark.table(BRONZE_TBL).limit(10))
 # CELL ********************
 
 # MAGIC %%sql
-# MAGIC select * from bronze_facebook_ads
+# MAGIC select count(*) from bronze_facebook_ads
 
 # METADATA ********************
 
 # META {
 # META   "language": "sparksql",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
