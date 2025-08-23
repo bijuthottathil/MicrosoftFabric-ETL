@@ -136,3 +136,15 @@ for d in range(DAYS):
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# CELL ********************
+
+df = spark.sql("SELECT * FROM FacebookLakehouse.gold_fb_daily_campaign_region_age_gender LIMIT 1000")
+display(df)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }

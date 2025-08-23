@@ -1,0 +1,93 @@
+{
+  "config": "{\"version\":\"5.66\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY18SU07\",\"type\":2,\"version\":{\"visual\":\"1.8.23\",\"report\":\"2.0.23\",\"page\":\"1.3.23\"}},\"customTheme\":{\"name\":\"Twilight\",\"type\":2,\"version\":{\"visual\":\"2.1.0\",\"report\":\"2.1.0\",\"page\":\"2.0.0\"}}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":0,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY18SU07",
+            "path": "BaseThemes/CY18SU07.json",
+            "type": 202
+          },
+          {
+            "name": "Twilight",
+            "path": "BuiltInThemes/Twilight.json",
+            "type": 201
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{\"objects\":{\"outspacePane\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"182L\"}}}}}]}}",
+      "displayName": "Page 1",
+      "displayOption": 3,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "101dd13533580351c4b9",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"2445f6792de0768a04d3\",\"layouts\":[{\"id\":0,\"position\":{\"x\":393,\"y\":200,\"z\":3000,\"width\":280,\"height\":217,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"gold_fb_daily_campaign_region_age_gender.region\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(gold_fb_daily_campaign_region_age_gender.spend)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fb_daily_campaign_region_age_gender\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"region\"},\"Name\":\"gold_fb_daily_campaign_region_age_gender.region\",\"NativeReferenceName\":\"region\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"spend\"}},\"Function\":0},\"Name\":\"Sum(gold_fb_daily_campaign_region_age_gender.spend)\",\"NativeReferenceName\":\"Sum of spend\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"spend\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Total spend by region'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 217.00,
+          "width": 280.00,
+          "x": 393.00,
+          "y": 200.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"28865b20e9550c0bc055\",\"layouts\":[{\"id\":0,\"position\":{\"x\":204,\"y\":253,\"z\":4000,\"width\":200,\"height\":328,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"gold_fb_daily_campaign_region_age_gender.region\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(gold_fb_daily_campaign_region_age_gender.cpm)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fb_daily_campaign_region_age_gender\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"region\"},\"Name\":\"gold_fb_daily_campaign_region_age_gender.region\",\"NativeReferenceName\":\"region\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"cpm\"}},\"Function\":0},\"Name\":\"Sum(gold_fb_daily_campaign_region_age_gender.cpm)\",\"NativeReferenceName\":\"Sum of cpm\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"cpm\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Total  cpm by region'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 328.00,
+          "width": 200.00,
+          "x": 204.00,
+          "y": 253.00,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"4a52536ceb7d8d539d75\",\"layouts\":[{\"id\":0,\"position\":{\"x\":204,\"y\":0,\"z\":1000,\"width\":280,\"height\":217,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"gold_fb_daily_campaign_region_age_gender.region\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fb_daily_campaign_region_age_gender\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"region\"},\"Name\":\"gold_fb_daily_campaign_region_age_gender.region\",\"NativeReferenceName\":\"region\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fb_daily_campaign_region_age_gender\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"region\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Middle East & Africa'\"}}]]}}}]}}}}],\"header\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Region'\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Bold'', wf_segoe-ui_bold, helvetica, arial, sans-serif'\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 217.00,
+          "width": 280.00,
+          "x": 204.00,
+          "y": 0.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"58091e050647d0e19d2a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":467,\"y\":0,\"z\":4002,\"width\":496,\"height\":94,\"tabOrder\":4002}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 94.00,
+          "width": 496.00,
+          "x": 467.00,
+          "y": 0.00,
+          "z": 4002.00
+        },
+        {
+          "config": "{\"name\":\"62d912512e2bbda72e51\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":193,\"z\":2000,\"width\":179,\"height\":396,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"hundredPercentStackedColumnChart\",\"projections\":{\"Y\":[{\"queryRef\":\"Sum(gold_fb_daily_campaign_region_age_gender.impressions)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fb_daily_campaign_region_age_gender\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"impressions\"}},\"Function\":0},\"Name\":\"Sum(gold_fb_daily_campaign_region_age_gender.impressions)\",\"NativeReferenceName\":\"Sum of impressions\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"impressions\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Total impressions'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 396.00,
+          "width": 179.00,
+          "x": 0.00,
+          "y": 193.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"ef39c4c6d881896b6091\",\"layouts\":[{\"id\":0,\"position\":{\"x\":12,\"y\":15,\"z\":0,\"width\":167,\"height\":158,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"gold_fb_daily_campaign_region_age_gender.gender\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fb_daily_campaign_region_age_gender\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"gender\"},\"Name\":\"gold_fb_daily_campaign_region_age_gender.gender\",\"NativeReferenceName\":\"gender\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}],\"header\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Gender'\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'''Segoe UI Bold'', wf_segoe-ui_bold, helvetica, arial, sans-serif'\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 158.00,
+          "width": 167.00,
+          "x": 12.00,
+          "y": 15.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ],
+  "theme": "Twilight"
+}

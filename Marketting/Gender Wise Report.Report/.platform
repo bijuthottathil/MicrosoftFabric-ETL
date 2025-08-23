@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Gender Wise Report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "eee5c4ee-dceb-89eb-4fc8-808e732de0e5"
+  }
+}
