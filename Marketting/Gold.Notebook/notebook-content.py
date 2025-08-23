@@ -122,3 +122,15 @@ display(spark.table(GOLD_DAILY_CAMPAIGN).orderBy(F.col("event_date")).limit(20))
 # META   "language": "sparksql",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# CELL ********************
+
+# MAGIC %%sql
+# MAGIC select * from gold_fb_daily_campaign_region_age_gender
+
+# METADATA ********************
+
+# META {
+# META   "language": "sparksql",
+# META   "language_group": "synapse_pyspark"
+# META }
