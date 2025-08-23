@@ -1,0 +1,60 @@
+{
+  "config": "{\"version\":\"5.66\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"version\":{\"visual\":\"1.8.95\",\"report\":\"2.0.95\",\"page\":\"1.3.95\"},\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU10",
+            "path": "BaseThemes/CY24SU10.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "90bc420caec377804ead",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"6618b8559e0b3c50b4dc\",\"layouts\":[{\"id\":0,\"position\":{\"x\":371.14568599717114,\"y\":34.3988684582744,\"z\":1,\"width\":295.1060820367751,\"height\":188.28854314002828,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(gold_fb_daily_campaign.clicks)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fb_daily_campaign\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"clicks\"}},\"Function\":0},\"Name\":\"Sum(gold_fb_daily_campaign.clicks)\",\"NativeReferenceName\":\"Sum of clicks\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"clicks\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 188.29,
+          "width": 295.11,
+          "x": 371.15,
+          "y": 34.40,
+          "z": 1.00
+        },
+        {
+          "config": "{\"name\":\"9c3eae85c495856a4267\",\"layouts\":[{\"id\":0,\"position\":{\"x\":769.4483734087694,\"y\":34.3988684582744,\"z\":2,\"width\":277.001414427157,\"height\":213.63507779349362,\"tabOrder\":2}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(gold_fb_daily_campaign.spend)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fb_daily_campaign\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"spend\"}},\"Function\":0},\"Name\":\"Sum(gold_fb_daily_campaign.spend)\",\"NativeReferenceName\":\"Sum of spend\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"spend\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 213.64,
+          "width": 277.00,
+          "x": 769.45,
+          "y": 34.40,
+          "z": 2.00
+        },
+        {
+          "config": "{\"name\":\"b18d3cf5069b345351c9\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10.862800565770863,\"y\":0,\"z\":0,\"width\":392.8712871287129,\"height\":280.6223479490806,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(gold_fb_daily_campaign.impressions)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fb_daily_campaign\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"impressions\"}},\"Function\":0},\"Name\":\"Sum(gold_fb_daily_campaign.impressions)\",\"NativeReferenceName\":\"Sum of impressions\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"impressions\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 280.62,
+          "width": 392.87,
+          "x": 10.86,
+          "y": 0.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

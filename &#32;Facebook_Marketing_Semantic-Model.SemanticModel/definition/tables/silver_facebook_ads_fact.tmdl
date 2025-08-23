@@ -1,0 +1,202 @@
+table silver_facebook_ads_fact
+	lineageTag: c659de36-003f-46eb-9dd7-37855ad65492
+	sourceLineageTag: [dbo].[silver_facebook_ads_fact]
+
+	column ad_id
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: bfbf4176-5e7d-4244-ab4d-e5c71353b677
+		sourceLineageTag: ad_id
+		summarizeBy: none
+		sourceColumn: ad_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column event_date
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: aa2cbc09-935e-4bbf-91f3-b6bd11d9cbac
+		sourceLineageTag: event_date
+		summarizeBy: none
+		sourceColumn: event_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column age
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 88beebc3-c1de-46f5-9c41-47bf5a56f1a6
+		sourceLineageTag: age
+		summarizeBy: none
+		sourceColumn: age
+
+		annotation SummarizationSetBy = Automatic
+
+	column gender
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c69554eb-bddc-40ff-896d-f3f0650cf844
+		sourceLineageTag: gender
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 6865b7f4-2059-47aa-b62b-b53a44148213
+		sourceLineageTag: region
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column impressions
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: b0f3892f-0dc0-475a-afa3-53aa1e0db277
+		sourceLineageTag: impressions
+		summarizeBy: sum
+		sourceColumn: impressions
+
+		annotation SummarizationSetBy = Automatic
+
+	column clicks
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: bf512edb-6868-424b-8309-8f9ff436b56a
+		sourceLineageTag: clicks
+		summarizeBy: sum
+		sourceColumn: clicks
+
+		annotation SummarizationSetBy = Automatic
+
+	column spend
+		dataType: double
+		sourceProviderType: float
+		lineageTag: fe19e58b-e98f-42ef-8887-f2fe4d9617d3
+		sourceLineageTag: spend
+		summarizeBy: sum
+		sourceColumn: spend
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column conversions
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 0fb33fc0-927e-4cee-a9b6-fc7c0a7310fb
+		sourceLineageTag: conversions
+		summarizeBy: sum
+		sourceColumn: conversions
+
+		annotation SummarizationSetBy = Automatic
+
+	column conversion_value
+		dataType: double
+		sourceProviderType: float
+		lineageTag: ad1ac12d-93cf-407e-b50d-46155bcc978b
+		sourceLineageTag: conversion_value
+		summarizeBy: sum
+		sourceColumn: conversion_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column video_plays
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: f4ec2b77-2820-4e6c-84b9-94fb7cc8c5d1
+		sourceLineageTag: video_plays
+		summarizeBy: sum
+		sourceColumn: video_plays
+
+		annotation SummarizationSetBy = Automatic
+
+	column page_engagement
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 83360c4c-e0b3-4674-b958-0963f3489a27
+		sourceLineageTag: page_engagement
+		summarizeBy: sum
+		sourceColumn: page_engagement
+
+		annotation SummarizationSetBy = Automatic
+
+	column reach
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 29b74002-250b-40d5-a356-bb3e6326faae
+		sourceLineageTag: reach
+		summarizeBy: sum
+		sourceColumn: reach
+
+		annotation SummarizationSetBy = Automatic
+
+	column ctr
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 3a0c428b-97b9-4f8a-b666-92768a64a995
+		sourceLineageTag: ctr
+		summarizeBy: sum
+		sourceColumn: ctr
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cpc
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 097be9fa-5593-488e-83f9-88fc7c3d7310
+		sourceLineageTag: cpc
+		summarizeBy: sum
+		sourceColumn: cpc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cpm
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 170e14b4-5d73-45cd-8b26-f9175c52aec3
+		sourceLineageTag: cpm
+		summarizeBy: sum
+		sourceColumn: cpm
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column purchase_roas
+		dataType: double
+		sourceProviderType: float
+		lineageTag: ed46d0b3-3281-4e70-8668-4befc1186199
+		sourceLineageTag: purchase_roas
+		summarizeBy: sum
+		sourceColumn: purchase_roas
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition silver_facebook_ads_fact = entity
+		mode: directLake
+		source
+			entityName: silver_facebook_ads_fact
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

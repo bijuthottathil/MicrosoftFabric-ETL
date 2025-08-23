@@ -1,0 +1,4 @@
+relationship c4e14d14-f302-f4d8-5290-2b15a3100f19
+	fromColumn: gold_fb_daily_campaign_region_age_gender.campaign_id
+	toColumn: silver_fb_campaign_dim.campaign_id
+
