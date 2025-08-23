@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Marketting-Report Version 1.0"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "163b522b-66f5-b6d8-484e-86e19d3fc15f"
+  }
+}
