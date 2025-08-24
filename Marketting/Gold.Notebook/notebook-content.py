@@ -114,7 +114,19 @@ display(spark.table(GOLD_DAILY_CAMPAIGN).orderBy(F.col("event_date")).limit(20))
 # CELL ********************
 
 # MAGIC %%sql
-# MAGIC select count(*) from gold_fb_summary_latest7d
+# MAGIC select *  from gold_fb_summary_latest7d
+
+# METADATA ********************
+
+# META {
+# META   "language": "sparksql",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# MAGIC %%sql
+# MAGIC select count(*) from gold_fb_daily_campaign_region_age_gender
 
 # METADATA ********************
 
