@@ -22,8 +22,7 @@
 
 # CELL ********************
 
-# Welcome to your new notebook
-# T# Notebook 01: facebook_bronze_ingest.py (PySpark)
+# Bronze Ingestion
 from pyspark.sql import functions as F, types as T
 
 ABFSS_ROOT = "abfss://0f013a70-fe67-4fa5-b30c-90b74f808a83@onelake.dfs.fabric.microsoft.com/8fdbb7e2-f746-4e17-a891-f8a3ed8754de/Files"
@@ -101,7 +100,7 @@ display(spark.table(BRONZE_TBL).limit(10))
 # CELL ********************
 
 # MAGIC %%sql
-# MAGIC select count(*) from bronze_facebook_ads
+# MAGIC select *  from bronze_facebook_ads LIMIT 20
 
 # METADATA ********************
 
