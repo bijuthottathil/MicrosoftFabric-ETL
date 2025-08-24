@@ -148,22 +148,8 @@ latest7.write.mode("overwrite").format("delta").saveAsTable(GOLD_SUMMARY)
 
 # CELL ********************
 
-
-GOLD_DAILY_CAMPAIGN = "gold_fb_daily_campaign"
-GOLD_DAILY_CAMPAIGN_REGION = "gold_fb_daily_campaign_region_age_gender"
-GOLD_SUMMARY = "gold_fb_summary_latest7d"
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
 # MAGIC %%sql
-# MAGIC drop table gold_fb_summary_latest7d
+# MAGIC select * from gold_fb_summary_latest7d limit 2
 
 # METADATA ********************
 
