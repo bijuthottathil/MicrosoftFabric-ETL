@@ -4,6 +4,22 @@
       {
         "type": "TridentNotebook",
         "typeProperties": {
+          "notebookId": "64fc783c-4d5b-a821-4975-51b11dd8ab1e",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Generate Data Using Simulator",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
           "notebookId": "fc12b0fd-e9dd-b9a8-4ce9-d57c5c812b80",
           "workspaceId": "00000000-0000-0000-0000-000000000000"
         },
@@ -14,8 +30,15 @@
           "secureInput": false,
           "secureOutput": false
         },
-        "name": "Bronze",
-        "dependsOn": []
+        "name": "Bronze ingest",
+        "dependsOn": [
+          {
+            "activity": "Generate Data Using Simulator",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
       },
       {
         "type": "TridentNotebook",
@@ -30,10 +53,10 @@
           "secureInput": false,
           "secureOutput": false
         },
-        "name": "Silver",
+        "name": "Silver transform",
         "dependsOn": [
           {
-            "activity": "Bronze",
+            "activity": "Bronze ingest",
             "dependencyConditions": [
               "Succeeded"
             ]
@@ -53,10 +76,10 @@
           "secureInput": false,
           "secureOutput": false
         },
-        "name": "Gold",
+        "name": "Gold aggregations",
         "dependsOn": [
           {
-            "activity": "Silver",
+            "activity": "Silver transform",
             "dependencyConditions": [
               "Succeeded"
             ]

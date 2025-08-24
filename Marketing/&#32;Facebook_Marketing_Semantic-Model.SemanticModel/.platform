@@ -1,12 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Notebook",
-    "displayName": "Facebookdatasimulator",
-    "description": "New notebook"
+    "type": "SemanticModel",
+    "displayName": " Facebook_Marketing_Semantic-Model"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "bf8ecdc0-b6b4-9dda-4abc-e95356eec73b"
+    "logicalId": "d132c5d3-f6ef-bdd3-4d04-842ff02d21a1"
   }
 }

@@ -24,7 +24,7 @@
   ],
   "sections": [
     {
-      "config": "{\"objects\":{\"outspacePane\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"180L\"}}}}}]}}",
+      "config": "{\"objects\":{\"outspacePane\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"182L\"}}}}}]}}",
       "displayName": "Page 1",
       "displayOption": 3,
       "filters": "[]",
@@ -32,12 +32,12 @@
       "name": "101dd13533580351c4b9",
       "visualContainers": [
         {
-          "config": "{\"name\":\"2445f6792de0768a04d3\",\"layouts\":[{\"id\":0,\"position\":{\"x\":379,\"y\":84,\"z\":3000,\"width\":336,\"height\":217,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"gold_fb_daily_campaign_region_age_gender.region\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(gold_fb_daily_campaign_region_age_gender.spend)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fb_daily_campaign_region_age_gender\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"region\"},\"Name\":\"gold_fb_daily_campaign_region_age_gender.region\",\"NativeReferenceName\":\"region\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"spend\"}},\"Function\":0},\"Name\":\"Sum(gold_fb_daily_campaign_region_age_gender.spend)\",\"NativeReferenceName\":\"Sum of spend\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"spend\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"legend\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}},\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"titleText\":{\"expr\":{\"Literal\":{\"Value\":\"'Region'\"}}}}}],\"dataPoint\":[{\"properties\":{\"borderShow\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Total spend by region'\"}}}}}]}}}",
+          "config": "{\"name\":\"2445f6792de0768a04d3\",\"layouts\":[{\"id\":0,\"position\":{\"x\":393,\"y\":200,\"z\":3000,\"width\":280,\"height\":217,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"gold_fb_daily_campaign_region_age_gender.region\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(gold_fb_daily_campaign_region_age_gender.spend)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"gold_fb_daily_campaign_region_age_gender\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"region\"},\"Name\":\"gold_fb_daily_campaign_region_age_gender.region\",\"NativeReferenceName\":\"region\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"spend\"}},\"Function\":0},\"Name\":\"Sum(gold_fb_daily_campaign_region_age_gender.spend)\",\"NativeReferenceName\":\"Sum of spend\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"spend\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Total spend by region'\"}}}}}]}}}",
           "filters": "[]",
           "height": 217.00,
-          "width": 336.00,
-          "x": 379.00,
-          "y": 84.00,
+          "width": 280.00,
+          "x": 393.00,
+          "y": 200.00,
           "z": 3000.00
         },
         {

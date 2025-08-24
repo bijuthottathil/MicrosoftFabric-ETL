@@ -1,11 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "DataPipeline",
-    "displayName": "MarkettingData-Pipeline"
+    "type": "Notebook",
+    "displayName": "2. Marketing-Silver",
+    "description": "New notebook"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "9f6c0231-c957-b2a9-4de5-12a83b79d18e"
+    "logicalId": "332245ac-bd1a-9cc6-479f-a70b12ba7ca4"
   }
 }
