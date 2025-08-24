@@ -159,3 +159,15 @@ GOLD_SUMMARY = "gold_fb_summary_latest7d"
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# CELL ********************
+
+# MAGIC %%sql
+# MAGIC drop table gold_fb_summary_latest7d
+
+# METADATA ********************
+
+# META {
+# META   "language": "sparksql",
+# META   "language_group": "synapse_pyspark"
+# META }
