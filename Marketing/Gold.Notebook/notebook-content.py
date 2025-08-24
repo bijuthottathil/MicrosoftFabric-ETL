@@ -22,7 +22,7 @@
 
 # CELL ********************
 
-# Notebook 03: facebook_gold_aggregations.py (PySpark)
+# Gold Aggregations
 from pyspark.sql import functions as F
 
 SILVER_FACT = "silver_facebook_ads_fact"
@@ -100,49 +100,62 @@ latest7.write.mode("overwrite").format("delta").saveAsTable(GOLD_SUMMARY)
 
 # CELL ********************
 
+# MAGIC %%sql
+# MAGIC select * from gold_fb_daily_campaign limit 2
 
-# Quick peek
-display(spark.table(GOLD_DAILY_CAMPAIGN).orderBy(F.col("event_date")).limit(20))
+# METADATA ********************
+
+# META {
+# META   "language": "sparksql",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# MAGIC %%sql
+# MAGIC select *  from gold_fb_summary_latest7d 
+
+# METADATA ********************
+
+# META {
+# META   "language": "sparksql",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# MAGIC %%sql
+# MAGIC select count(*) from gold_fb_daily_campaign_region_age_gender 
+
+# METADATA ********************
+
+# META {
+# META   "language": "sparksql",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# MAGIC %%sql
+# MAGIC select * from gold_fb_daily_campaign_region_age_gender limit 2
+
+# METADATA ********************
+
+# META {
+# META   "language": "sparksql",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+
+GOLD_DAILY_CAMPAIGN = "gold_fb_daily_campaign"
+GOLD_DAILY_CAMPAIGN_REGION = "gold_fb_daily_campaign_region_age_gender"
+GOLD_SUMMARY = "gold_fb_summary_latest7d"
 
 # METADATA ********************
 
 # META {
 # META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-# MAGIC %%sql
-# MAGIC select *  from gold_fb_summary_latest7d
-
-# METADATA ********************
-
-# META {
-# META   "language": "sparksql",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-# MAGIC %%sql
-# MAGIC select count(*) from gold_fb_daily_campaign_region_age_gender
-
-# METADATA ********************
-
-# META {
-# META   "language": "sparksql",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-# MAGIC %%sql
-# MAGIC select * from gold_fb_daily_campaign_region_age_gender
-
-# METADATA ********************
-
-# META {
-# META   "language": "sparksql",
 # META   "language_group": "synapse_pyspark"
 # META }

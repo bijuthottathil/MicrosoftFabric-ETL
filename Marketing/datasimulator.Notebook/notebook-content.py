@@ -22,9 +22,7 @@
 
 # CELL ********************
 
-# Welcome to your new notebook
-# Type here in the cell editor to add code!
-# Notebook 00: facebook_simulator_generate_csvs.py (PySpark)
+# This simulator code will generate CSV files in the raw folder 
 from pyspark.sql import functions as F, types as T
 import random, datetime as dt
 
@@ -129,6 +127,18 @@ for d in range(DAYS):
        .option("header","true")
        .csv(out))
     print(f"Wrote {ROWS_PER_DAY} rows → {out}")
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+df=spark.read.csv("Files/raw/facebook/date=2025-08-19/facebook_2025-08-19.csv",header=True)
+display(df)
 
 # METADATA ********************
 

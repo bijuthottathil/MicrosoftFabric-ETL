@@ -22,7 +22,8 @@
 
 # CELL ********************
 
-# Notebook 02: facebook_silver_transform.py (PySpark)
+# Silver Transformation
+
 from pyspark.sql import functions as F
 
 BRONZE_TBL = "bronze_facebook_ads"
@@ -92,6 +93,54 @@ display(spark.table(SILVER_FACT).limit(10))
 
 # MAGIC %%sql
 # MAGIC select count(*) from silver_facebook_ads_fact
+
+# METADATA ********************
+
+# META {
+# META   "language": "sparksql",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# MAGIC %%sql
+# MAGIC select * from silver_facebook_ads_fact limit 2
+
+# METADATA ********************
+
+# META {
+# META   "language": "sparksql",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# MAGIC %%sql
+# MAGIC select * from silver_fb_campaign_dim limit 2
+
+# METADATA ********************
+
+# META {
+# META   "language": "sparksql",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# MAGIC %%sql
+# MAGIC select * from silver_fb_adset_dim limit 2
+
+# METADATA ********************
+
+# META {
+# META   "language": "sparksql",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# MAGIC %%sql
+# MAGIC select * from silver_fb_ad_dim limit 2
 
 # METADATA ********************
 
