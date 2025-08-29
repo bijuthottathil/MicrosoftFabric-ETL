@@ -1,0 +1,66 @@
+# azure-pipelines.yml
+trigger:
+  branches:
+    include:
+      - main
+
+stages:
+# ────────────────────────────────────────────────────────────────────────────────
+# 0) Common: get an access token for Fabric REST APIs
+# ────────────────────────────────────────────────────────────────────────────────
+- stage: _Token
+  displayName: 'Acquire Fabric token'
+  jobs:
+  - job: get_token
+    pool: { vmImage: 'ubuntu-latest' }
+    steps:
+    - bash: |
+        set -e
+        TENANT_ID='$(TENANT_ID)'
+        CLIENT_ID='$(CLIENT_ID)'
+        CLIENT_SECRET='$(CLIENT_SECRET)'
+        SCOPE='https://api.fabric.microsoft.com/.default'
+
+        TOKEN=$(curl -s -X POST \
+          -H "Content-Type: application/x-www-form-urlencoded" \
+          -d "client_id=${CLIENT_ID}&scope=${SCOPE}&client_secret=${CLIENT_SECRET}&grant_type=client_credentials" \
+          "https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/token" | jq -r .access_token)
+
+        if [ -z "$TOKEN" ] || [ "$TOKEN" = "null" ]; then
+          echo "Failed to obtain token"; exit 1
+        fi
+
+        echo "##vso[task.setvariable variable=FABRIC_TOKEN;issecret=true]$TOKEN"
+      displayName: 'Get OAuth2 token (service principal)'
+
+# ────────────────────────────────────────────────────────────────────────────────
+# 1) Promote Dev ➜ Test using Fabric Deployment Pipeline
+# ────────────────────────────────────────────────────────────────────────────────
+- stage: Promote_Dev_to_Test
+  dependsOn: _Token
+  displayName: 'Promote Dev ➜ Test (Fabric Deployment Pipeline)'
+  jobs:
+  - job: promote
+    pool: { vmImage: 'ubuntu-latest' }
+    steps:
+    - bash: |
+        set -e
+        DEPLOYMENT_PIPELINE_ID='$(DEPLOYMENT_PIPELINE_ID)'
+        SOURCE_STAGE_ID='$(DEV_STAGE_ID)'
+        TARGET_STAGE_ID='$(TEST_STAGE_ID)'
+
+        BODY=$(jq -n \
+          --arg src "$SOURCE_STAGE_ID" \
+          --arg tgt "$TARGET_STAGE_ID" \
+          --arg note "ADO promote Dev to Test" \
+          '{sourceStageId:$src, targetStageId:$tgt, note:$note}')
+
+        RESP=$(curl -s -i -X POST \
+          -H "Authorization: Bearer $(FABRIC_TOKEN)" \
+          -H "Content-Type: application/json" \
+          -d "$BODY" \
+          "https://api.fabric.microsoft.com/v1/deploymentPipelines/${DEPLOYMENT_PIPELINE_ID}/deploy")
+
+        echo "$RESP"
+        # Optional: parse Location header to poll operation until Succeeded
+      displayName: 'Deploy stage content (Dev ➜ Test)'
