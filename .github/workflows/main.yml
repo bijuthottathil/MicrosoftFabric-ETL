@@ -37,8 +37,8 @@ jobs:
           echo "token=$TOKEN" >> $GITHUB_OUTPUT
 
       - name: Promote Dev -> Test
-        env: # This env block was incorrectly indented. It must be a key-value pair under the 'steps' item.
-          ACCESS_TOKEN: ${{ steps.get_token.outputs.token }} # Fix reference to use correct ID (get_token) and output name (token)
+        env:
+          ACCESS_TOKEN: ${{ steps.get_token.outputs.token }}
         run: |
           set -euo pipefail
 
@@ -49,12 +49,13 @@ jobs:
           : "${ACCESS_TOKEN:?Missing ACCESS_TOKEN}"
 
           BODY=$(cat <<EOF
-          {"sourceStageId":"$DEV_STAGE_ID","targetStageId":"$TEST_STAGE_ID","note":"GitHub Actions promote Dev to Test"}
-                                EOF)
+{"sourceStageId":"$DEV_STAGE_ID","targetStageId":"$TEST_STAGE_ID","note":"GitHub Actions promote Dev to Test"}
+EOF
+)
 
           echo "Promoting from Dev ($DEV_STAGE_ID) to Test ($TEST_STAGE_ID)..."
 
-          # -f makes curl fail the step on HTTP >= 400 (useful!)
+          # -f makes curl fail the step on HTTP >= 400
           RESP_HEADERS=$(mktemp)
           RESP_BODY=$(mktemp)
 
