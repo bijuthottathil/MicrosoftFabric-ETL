@@ -49,9 +49,8 @@ jobs:
           : "${ACCESS_TOKEN:?Missing ACCESS_TOKEN}"
 
           BODY=$(cat <<EOF
-{"sourceStageId":"$DEV_STAGE_ID","targetStageId":"$TEST_STAGE_ID","note":"GitHub Actions promote Dev to Test"}
-EOF
-)
+          {"sourceStageId":"$DEV_STAGE_ID","targetStageId":"$TEST_STAGE_ID","note":"GitHub Actions promote Dev to Test"}
+                                EOF)
 
           echo "Promoting from Dev ($DEV_STAGE_ID) to Test ($TEST_STAGE_ID)..."
 
