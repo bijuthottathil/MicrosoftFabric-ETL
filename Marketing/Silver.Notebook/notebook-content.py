@@ -91,8 +91,20 @@ display(spark.table(SILVER_FACT).limit(10))
 
 # CELL ********************
 
+
+spark.sql("DESCRIBE DETAIL silver_facebook_ads_fact").show()  
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 # MAGIC %%sql
-# MAGIC select count(*) from silver_facebook_ads_fact
+# MAGIC select  * from silver_facebook_ads_fact
 
 # METADATA ********************
 
@@ -104,7 +116,7 @@ display(spark.table(SILVER_FACT).limit(10))
 # CELL ********************
 
 # MAGIC %%sql
-# MAGIC select * from silver_facebook_ads_fact limit 2
+# MAGIC select * from silver_facebook_ads_fact 
 
 # METADATA ********************
 

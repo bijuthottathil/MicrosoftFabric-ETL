@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "CosmosDBNoSQLDatabase",
+    "displayName": "MarkettingCosmosDB"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1b665e68-b987-830b-4eb2-a1a606f808be"
+  }
+}
