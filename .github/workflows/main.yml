@@ -38,9 +38,9 @@ jobs:
               -d "scope=https://api.fabric.microsoft.com/Pipeline.ReadWrite.All offline_access" \
               "https://login.microsoftonline.com/$TENANT_ID/oauth2/v2.0/token" \
             | python3 - <<'PY'
-import sys, json
-print(json.load(sys.stdin).get("access_token",""))
-PY
+          import sys, json
+          print(json.load(sys.stdin).get("access_token",""))
+          PY
           )
           [ -n "$ACCESS_TOKEN" ] || { echo "Failed to obtain access token"; exit 1; }
           echo "access_token=$ACCESS_TOKEN" >> "$GITHUB_OUTPUT"
