@@ -14,8 +14,7 @@ jobs:
       PIPELINE_ID: ${{ secrets.FABRIC_PIPELINE_ID }}
       DEV_STAGE_ID: ${{ secrets.FABRIC_DEV_STAGE_ID }}
       TEST_STAGE_ID: ${{ secrets.FABRIC_TEST_STAGE_ID }}
-
-    steps:
+steps:
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -39,7 +38,7 @@ jobs:
               "https://login.microsoftonline.com/$TENANT_ID/oauth2/v2.0/token" \
             | python3 - <<'PY'
           import sys, json
-          print(json.load(sys.stdin).get("access_token",""))
+            print(json.load(sys.stdin).get("access_token",""))
           PY
           )
           [ -n "$ACCESS_TOKEN" ] || { echo "Failed to obtain access token"; exit 1; }
@@ -61,9 +60,9 @@ jobs:
           : "${ACCESS_TOKEN:?Missing ACCESS_TOKEN}"
 
           BODY=$(cat <<EOF
-{"sourceStageId":"$DEV_STAGE_ID","targetStageId":"$TEST_STAGE_ID","note":"GitHub Actions promote Dev→Test"}
-EOF
-)
+          {"sourceStageId":"$DEV_STAGE_ID","targetStageId":"$TEST_STAGE_ID","note":"GitHub Actions promote Dev→Test"}
+          EOF
+          )
 
           echo "Promoting from Dev ($DEV_STAGE_ID) to Test ($TEST_STAGE_ID)..."
 
@@ -98,22 +97,3 @@ EOF
             for i in {1..30}; do
               sleep 10
               OC=$(curl -sS -H "Authorization: Bearer $ACCESS_TOKEN" "$OP_URL" | python3 - <<'PY'
-import sys, json
-try:
-  d=json.load(sys.stdin)
-  print(d.get("status",""))
-except Exception:
-  print("")
-PY
-)
-              echo "Attempt $i status: $OC"
-              if [ "$OC" = "Succeeded" ]; then
-                echo "Promotion Succeeded."; exit 0
-              elif [ "$OC" = "Failed" ]; then
-                echo "Promotion Failed."; exit 1
-              fi
-            done
-            echo "Operation did not finish within timeout."; exit 1
-          else
-            echo "No operation URL returned; assuming synchronous success."
-          fi
