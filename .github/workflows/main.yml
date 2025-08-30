@@ -1,72 +1,119 @@
-name: Deploy Fabric Pipeline Dev -> Test
+name: Fabric Deploy Dev → Test
 
 on:
-  workflow_dispatch:  # Manual trigger, or add push/cron if you want
+  workflow_dispatch: {}
 
 jobs:
-  promote-dev-to-test:
+  deploy:
     runs-on: ubuntu-latest
-
     env:
       TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-      CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-      CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-      DEPLOYMENT_PIPELINE_ID: ${{ secrets.FABRIC_PIPELINE_ID }}
+      CLIENT_ID: ${{ secrets.FABRIC_APP_CLIENT_ID }}
+      CLIENT_SECRET: ${{ secrets.FABRIC_APP_CLIENT_SECRET }}
+      REFRESH_TOKEN: ${{ secrets.FABRIC_USER_REFRESH_TOKEN }}
+      PIPELINE_ID: ${{ secrets.FABRIC_PIPELINE_ID }}
       DEV_STAGE_ID: ${{ secrets.FABRIC_DEV_STAGE_ID }}
       TEST_STAGE_ID: ${{ secrets.FABRIC_TEST_STAGE_ID }}
 
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Get Fabric API token
-        id: get_token
+      # Exchange the stored refresh token for a fresh ACCESS TOKEN (delegated user)
+      - name: Get delegated access token
+        id: token
         run: |
-          TOKEN=$(curl -s -X POST \
-            -H "Content-Type: application/x-www-form-urlencoded" \
-            --data-urlencode "client_id=$CLIENT_ID" \
-            --data-urlencode "scope=https://api.fabric.microsoft.com/.default" \
-            --data-urlencode "client_secret=$CLIENT_SECRET" \
-            --data-urlencode "grant_type=client_credentials" \
-            "https://login.microsoftonline.com/$TENANT_ID/oauth2/v2.0/token" | jq -r .access_token)
+          set -euo pipefail
+          for v in TENANT_ID CLIENT_ID CLIENT_SECRET REFRESH_TOKEN; do
+            test -n "${!v:-}" || { echo "Missing $v env"; exit 1; }
+          done
 
-          if [ -z "$TOKEN" ] || [ "$TOKEN" == "null" ]; then
-            echo "Failed to get token"
-            exit 1
-          fi
-          echo "token=$TOKEN" >> $GITHUB_OUTPUT
+          ACCESS_TOKEN=$(
+            curl -sS -X POST \
+              -H "Content-Type: application/x-www-form-urlencoded" \
+              -d "client_id=$CLIENT_ID" \
+              -d "client_secret=$CLIENT_SECRET" \
+              -d "grant_type=refresh_token" \
+              -d "refresh_token=$REFRESH_TOKEN" \
+              -d "scope=https://api.fabric.microsoft.com/Pipeline.ReadWrite.All offline_access" \
+              "https://login.microsoftonline.com/$TENANT_ID/oauth2/v2.0/token" \
+            | python3 - <<'PY'
+import sys, json
+print(json.load(sys.stdin).get("access_token",""))
+PY
+          )
+          [ -n "$ACCESS_TOKEN" ] || { echo "Failed to obtain access token"; exit 1; }
+          echo "access_token=$ACCESS_TOKEN" >> "$GITHUB_OUTPUT"
 
-      - name: Promote Dev -> Test
+      # Promote Dev → Test
+      - name: Promote Dev → Test
         env:
-          ACCESS_TOKEN: ${{ steps.get_token.outputs.token }}
+          ACCESS_TOKEN: ${{ steps.token.outputs.access_token }}
+          PIPELINE_ID: ${{ env.PIPELINE_ID }}
+          DEV_STAGE_ID: ${{ env.DEV_STAGE_ID }}
+          TEST_STAGE_ID: ${{ env.TEST_STAGE_ID }}
         run: |
           set -euo pipefail
 
-          # Guard: ensure env vars exist
-          : "${DEPLOYMENT_PIPELINE_ID:?Missing DEPLOYMENT_PIPELINE_ID}"
+          : "${PIPELINE_ID:?Missing PIPELINE_ID}"
           : "${DEV_STAGE_ID:?Missing DEV_STAGE_ID}"
           : "${TEST_STAGE_ID:?Missing TEST_STAGE_ID}"
           : "${ACCESS_TOKEN:?Missing ACCESS_TOKEN}"
 
           BODY=$(cat <<EOF
-{"sourceStageId":"$DEV_STAGE_ID","targetStageId":"$TEST_STAGE_ID","note":"GitHub Actions promote Dev to Test"}
+{"sourceStageId":"$DEV_STAGE_ID","targetStageId":"$TEST_STAGE_ID","note":"GitHub Actions promote Dev→Test"}
 EOF
 )
 
           echo "Promoting from Dev ($DEV_STAGE_ID) to Test ($TEST_STAGE_ID)..."
 
-          # -f makes curl fail the step on HTTP >= 400
-          RESP_HEADERS=$(mktemp)
-          RESP_BODY=$(mktemp)
-
-          curl -sS -f -i -X POST \
-            -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+          # Call deploy; capture headers to detect operation URL (if returned)
+          HDR=$(mktemp)
+          RESP=$(mktemp)
+          set +e
+          curl -sS -D "$HDR" -o "$RESP" -w "HTTP:%{http_code}\n" -X POST \
+            -H "Authorization: Bearer $ACCESS_TOKEN" \
             -H "Content-Type: application/json" \
             -d "$BODY" \
-            "https://api.fabric.microsoft.com/v1/deploymentPipelines/${DEPLOYMENT_PIPELINE_ID}/deploy" \
-            | tee "$RESP_HEADERS" > "$RESP_BODY"
+            "https://api.fabric.microsoft.com/v1/deploymentPipelines/$PIPELINE_ID/deploy" | tee http_status.txt
+          RC=$?
+          set -e
 
-          echo "---- Response headers ----"
-          head -n 20 "$RESP_HEADERS" || true
           echo "---- Response body ----"
-          cat "$RESP_BODY" || true
+          cat "$RESP" || true
+          echo "---- Response headers ----"
+          head -n 40 "$HDR" || true
+
+          [ $RC -eq 0 ] || { echo "curl failed ($RC)"; exit $RC; }
+          HTTP_CODE=$(sed -n 's/^HTTP://p' http_status.txt)
+          if [ "${HTTP_CODE:-500}" -ge 400 ]; then
+            echo "Deploy call failed with HTTP $HTTP_CODE"; exit 1
+          fi
+
+          # Try to extract operation location to optionally poll until completion
+          OP_URL=$(grep -i '^location:' "$HDR" | awk '{print $2}' | tr -d '\r')
+          if [ -n "$OP_URL" ]; then
+            echo "Found operation URL: $OP_URL"
+            echo "Polling until operation completes..."
+            for i in {1..30}; do
+              sleep 10
+              OC=$(curl -sS -H "Authorization: Bearer $ACCESS_TOKEN" "$OP_URL" | python3 - <<'PY'
+import sys, json
+try:
+  d=json.load(sys.stdin)
+  print(d.get("status",""))
+except Exception:
+  print("")
+PY
+)
+              echo "Attempt $i status: $OC"
+              if [ "$OC" = "Succeeded" ]; then
+                echo "Promotion Succeeded."; exit 0
+              elif [ "$OC" = "Failed" ]; then
+                echo "Promotion Failed."; exit 1
+              fi
+            done
+            echo "Operation did not finish within timeout."; exit 1
+          else
+            echo "No operation URL returned; assuming synchronous success."
+          fi
